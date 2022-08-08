@@ -12,7 +12,7 @@ export function History() {
               <th>Duração</th>
               <th>Início</th>
               <th>
-                <Status>Concluído</Status>
+                <Status statusColor="green">Concluído</Status>
               </th>
             </tr>
           </thead>
@@ -22,7 +22,7 @@ export function History() {
               <td>20 minutos</td>
               <td>Há 1 semana</td>
               <td>
-                <Status>Concluído</Status>
+                <Status statusColor="green">Concluído</Status>
               </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@ export function History() {
               <td>20 minutos</td>
               <td>Há 1 semana</td>
               <td>
-                <Status>Concluído</Status>
+                <Status statusColor="green">Concluído</Status>
               </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@ export function History() {
               <td>20 minutos</td>
               <td>Há 1 semana</td>
               <td>
-                <Status>Concluído</Status>
+                <Status statusColor="red">Interrompido</Status>
               </td>
             </tr>
             <tr>
@@ -46,7 +46,7 @@ export function History() {
               <td>20 minutos</td>
               <td>Há 1 semana</td>
               <td>
-                <Status>Concluído</Status>
+                <Status statusColor="yellow">Em andamento</Status>
               </td>
             </tr>
           </tbody>

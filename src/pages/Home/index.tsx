@@ -1,4 +1,5 @@
 import { Play } from 'phosphor-react'
+import { useForm } from 'react-hook-form'
 import {
   CountdownContainer,
   CountdownStartBtn,
@@ -10,6 +11,7 @@ import {
 } from './styles'
 
 export function Home() {
+  const { register, handleSubmit } = useForm()
   return (
     <HomeContainer>
       <form action="">

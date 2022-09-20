@@ -61,6 +61,8 @@ export function Home() {
               }
             })
           )
+          setSecondsPassed(totalSeconds)
+          clearInterval(interval)
         } else {
           setSecondsPassed(secondsDifference)
         }
@@ -70,7 +72,7 @@ export function Home() {
     return () => {
       clearInterval(interval)
     }
-  }, [activeCycle, totalSeconds])
+  }, [activeCycle, totalSeconds, activeCycleId])
 
   function handleCreateNewCycle(data: FormData) {
     const id = String(new Date().getTime())

@@ -1,6 +1,7 @@
 import { FormContainer, InputTask, MinutesAmount } from './styles'
 
 export function NewCycleForm() {
+  const { activeCycle } = useContext(CyclesContext)
   return (
     <FormContainer>
       <label htmlFor="task">Vou trabalhar em</label>

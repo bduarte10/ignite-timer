@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { FormContainer, InputTask, MinutesAmount } from './styles'
 
 export function NewCycleForm() {

@@ -38,7 +38,7 @@ export function Home() {
       minutesAmount: 0,
     },
   })
-  const { handleSubmit, reset } = newCycleForm
+  const { handleSubmit, reset, watch } = newCycleForm
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
   function markCurrentCycleAsFinished() {

@@ -1,7 +1,6 @@
 import { HandPalm, Play } from 'phosphor-react'
 import { createContext, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { differenceInSeconds } from 'date-fns'
 
 import { CountdownStartBtn, HomeContainer, StopCountdownBtn } from './styles'
 import { NewCycleForm } from './NewCycleForm'
@@ -24,6 +23,8 @@ interface CyclesContextData {
   activeCycle: Cycle | undefined
   activeCycleId: string | null
   markCurrentCycleAsFinished: () => void
+  secondsPassed: number
+  setAmountSecondsPassed: (seconds: number) => void
 }
 
 export const CyclesContext = createContext({} as CyclesContextData)
@@ -31,6 +32,7 @@ export const CyclesContext = createContext({} as CyclesContextData)
 export function Home() {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [secondsPassed, setSecondsPassed] = useState(0)
 
   const newCycleForm = useForm<FormData>({
     defaultValues: {
@@ -80,6 +82,10 @@ export function Home() {
     setActiveCycleId(null)
   }
 
+  function setAmountSecondsPassed(seconds: number) {
+    setSecondsPassed(seconds)
+  }
+
   const task = watch('task')
   const isSubmitDisabled = !task
 
@@ -87,7 +93,13 @@ export function Home() {
     <HomeContainer>
       <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
         <CyclesContext.Provider
-          value={{ activeCycle, activeCycleId, markCurrentCycleAsFinished }}
+          value={{
+            activeCycle,
+            activeCycleId,
+            markCurrentCycleAsFinished,
+            secondsPassed,
+            setAmountSecondsPassed,
+          }}
         >
           <FormProvider {...newCycleForm}>
             <NewCycleForm />

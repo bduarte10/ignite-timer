@@ -16,9 +16,7 @@ export function History() {
               <th>Tarefa</th>
               <th>Duração</th>
               <th>Início</th>
-              <th>
-                <Status statusColor="green">Concluído</Status>
-              </th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>

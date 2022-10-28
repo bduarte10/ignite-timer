@@ -9,11 +9,11 @@ export function NewCycleForm() {
   const { register } = useFormContext()
   return (
     <FormContainer>
-      <label htmlFor="task">Vou trabalhar em</label>
+      <label htmlFor="task">Tarefa:</label>
       <InputTask
         id="task"
         list="task-suggestions"
-        placeholder="Dê um nome para seu projeto"
+        placeholder="Nome da tarefa"
         disabled={!!activeCycle}
         {...register('task')}
       />
@@ -24,7 +24,7 @@ export function NewCycleForm() {
         <option value="projeto 4" />
       </datalist>
 
-      <label htmlFor="minutesAmount">durante</label>
+      <label htmlFor="minutesAmount">Período:</label>
       <MinutesAmount
         type="number"
         id="minutesAmount"

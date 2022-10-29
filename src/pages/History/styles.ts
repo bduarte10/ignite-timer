@@ -69,6 +69,7 @@ export const HistoryList = styled.div`
       }
       td {
         padding: 0.5rem;
+        padding-right: 2rem;
         &:first-child {
           padding-left: 1rem;
         }

@@ -49,7 +49,7 @@ export function Countdown() {
     if (activeCycle) {
       document.title = `${minutes}:${seconds}`
     } else {
-      document.title = 'Pomodoro Timer'
+      document.title = 'PomoTasks'
     }
   }, [minutes, seconds, activeCycle])
   return (

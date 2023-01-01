@@ -33,7 +33,9 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cycles, setCycles] = useReducer(() => {}, [])
+  const [cycles, dispatch] = useReducer((state: Cycle[], action: any) => {
+    return state
+  }, [])
 
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
   const [secondsPassed, setSecondsPassed] = useState(0)
@@ -52,23 +54,31 @@ export function CyclesContextProvider({
       minutesAmount: data.minutesAmount,
       startDate: new Date(),
     }
-    setCycles((state) => [...state, newCycle])
+
+    dispatch({
+      type: 'ADD_NEW_CYCLE',
+      payload: {
+        data: newCycle,
+      },
+    })
+
+    // setCycles((state) => [...state, newCycle])
     setActiveCycleId(id)
     setSecondsPassed(0)
   }
 
-  function interruptCurrentCycle() {
-    setCycles((state) =>
-      state.map((cycle) => {
-        if (cycle.id === activeCycleId) {
-          return { ...cycle, interruptedDate: new Date() }
-        } else {
-          return cycle
-        }
-      })
-    )
-    setActiveCycleId(null)
-  }
+  // function interruptCurrentCycle() {
+  //   setCycles((state) =>
+  //     state.map((cycle) => {
+  //       if (cycle.id === activeCycleId) {
+  //         return { ...cycle, interruptedDate: new Date() }
+  //       } else {
+  //         return cycle
+  //       }
+  //     })
+  //   )
+  //   setActiveCycleId(null)
+  // }
 
   function markCurrentCycleAsFinished() {
     setCycles((state) =>

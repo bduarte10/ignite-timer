@@ -39,7 +39,7 @@ interface CyclesState {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cycles, dispatch] = useReducer(
+  const [cyclesState, dispatch] = useReducer(
     (state: CyclesState, action: any) => {
       if (action.type === 'ADD_NEW_CYCLE') {
         return {
@@ -55,8 +55,8 @@ export function CyclesContextProvider({
       activeCycleId: null,
     }
   )
+  const { cycles, activeCycleId } = cyclesState
 
-  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
   const [secondsPassed, setSecondsPassed] = useState(0)
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)

@@ -39,12 +39,26 @@ interface CyclesState {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  // const [cyclesState, dispatch] = useReducer(
+  const [cyclesState, dispatch] = useReducer(
     (state: CyclesState, action: any) => {
       if (action.type === 'ADD_NEW_CYCLE') {
         return {
           ...state,
           cycles: [...state.cycles, action.payload.newCycle],
+          activeCycleId: action.payload.newCycle.id,
+        }
+      }
+      if (action.type === 'INTERRUPT_CURRENT_CYCLE') {
+        return {
+          ...state,
+          cycles: state.cycles.map((cycle) => {
+            if (cycle.id === action.payload.activeCycleId) {
+              return { ...cycle, interruptedDate: new Date() }
+            } else {
+              return cycle
+            }
+          }),
+          activeCycleId: null,
         }
       }
 
@@ -82,7 +96,7 @@ export function CyclesContextProvider({
     })
 
     // setCycles((state) => [...state, newCycle])
-    setActiveCycleId(id)
+    // setActiveCycleId(id)
     setSecondsPassed(0)
   }
 

@@ -34,18 +34,25 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
+      <form
+        onSubmit={handleSubmit(handleCreateNewCycle)}
+        action="">
         <FormProvider {...newCycleForm}>
+          <p>Cadastre uma nova tarefa e inicie o ciclo:</p>
           <NewCycleForm />
         </FormProvider>
         <Countdown />
         {activeCycle ? (
-          <StopCountdownBtn onClick={interruptCurrentCycle} type="button">
+          <StopCountdownBtn
+            onClick={interruptCurrentCycle}
+            type="button">
             <HandPalm size={24} />
             interromper
           </StopCountdownBtn>
         ) : (
-          <CountdownStartBtn type="submit" disabled={isSubmitDisabled}>
+          <CountdownStartBtn
+            type="submit"
+            disabled={isSubmitDisabled}>
             <Play size={24} />
             Começar
           </CountdownStartBtn>

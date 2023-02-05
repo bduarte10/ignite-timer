@@ -9,7 +9,6 @@ export function NewCycleForm() {
   const { register } = useFormContext()
   return (
     <FormContainer>
-      <label htmlFor="task">Tarefa:</label>
       <InputTask
         id="task"
         list="task-suggestions"
@@ -24,12 +23,12 @@ export function NewCycleForm() {
         <option value="Estudar React Native" />
       </datalist>
 
-      <label htmlFor="minutesAmount">Período:</label>
       <MinutesAmount
         type="number"
         id="minutesAmount"
         placeholder="05"
         disabled={!!activeCycle}
+        autoComplete="off"
         step={5}
         min={5}
         max={60}

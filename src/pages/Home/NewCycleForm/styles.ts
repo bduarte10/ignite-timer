@@ -21,8 +21,8 @@ export const FormContainer = styled.div`
 const BaseInput = styled.input`
   background: transparent;
   height: 2.5rem;
-  border: 0;
-  border-bottom: 2px solid ${(props) => props.theme['gray-500']};
+  border-radius: 10px;
+  border: 2px solid ${(props) => props.theme['gray-500']};
   font-weight: bold;
   font-size: inherit;
   padding: 0 0.5rem;
@@ -48,6 +48,12 @@ export const InputTask = styled(BaseInput)`
   }
 `
 export const MinutesAmount = styled(BaseInput)`
+  text-align: center;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  -moz-appearance: textfield;
+  appearance: textfield;
   width: 4rem;
   @media (max-width: 768px) {
     flex: 1;

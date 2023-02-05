@@ -10,8 +10,8 @@ export function DefaultLayout() {
       <LayoutContainer>
         <Header />
         <Outlet />
+        <Copyright />
       </LayoutContainer>
-      <Copyright />
     </>
   )
 }

@@ -1,4 +1,3 @@
-import { differenceInSeconds } from 'date-fns'
 import { useContext, useEffect } from 'react'
 import { CyclesContext } from '../../../contexts/CyclesContext'
 import { CountdownContainer, Separator } from './styles'
@@ -6,10 +5,10 @@ import { CountdownContainer, Separator } from './styles'
 export function Countdown() {
   const {
     activeCycle,
-    activeCycleId,
     markCurrentCycleAsFinished,
     secondsPassed,
     setAmountSecondsPassed,
+    isPaused,
   } = useContext(CyclesContext)
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
@@ -17,27 +16,31 @@ export function Countdown() {
   useEffect(() => {
     let interval: number
 
-    if (activeCycle) {
-      interval = setInterval(() => {
-        const secondsDifference = differenceInSeconds(
-          new Date(),
-          activeCycle.startDate
-        )
+    if (activeCycle && !isPaused) {
+      const secondsDifference = secondsPassed
+      const remainingSeconds = totalSeconds - secondsDifference
 
-        if (secondsDifference >= totalSeconds) {
-          markCurrentCycleAsFinished()
-          setAmountSecondsPassed(totalSeconds)
-          clearInterval(interval)
-        } else {
-          setAmountSecondsPassed(secondsDifference)
-        }
-      }, 1000)
+      if (remainingSeconds <= 0) {
+        markCurrentCycleAsFinished()
+        setAmountSecondsPassed(totalSeconds)
+      } else {
+        interval = setInterval(() => {
+          setAmountSecondsPassed(secondsDifference + 1)
+        }, 1000)
+      }
     }
 
     return () => {
       clearInterval(interval)
     }
-  }, [activeCycle, totalSeconds, activeCycleId])
+  }, [
+    activeCycle,
+    secondsPassed,
+    totalSeconds,
+    isPaused,
+    markCurrentCycleAsFinished,
+    setAmountSecondsPassed,
+  ])
 
   const currentSeconds = activeCycle ? totalSeconds - secondsPassed : 0
   const minutesAmount = Math.floor(currentSeconds / 60)
@@ -52,6 +55,7 @@ export function Countdown() {
       document.title = 'PomoTasks'
     }
   }, [minutes, seconds, activeCycle])
+
   return (
     <CountdownContainer>
       <span>{minutes[0]}</span>

@@ -2,9 +2,8 @@
 import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
-  /* border: 1px solid ${(props) => props.theme['orange-700']}; */
   height: 100vh;
-  padding: 2.5rem;
+  padding: 2rem 5.5rem;
 
   background: ${(props) => props.theme['gray-800']};
 

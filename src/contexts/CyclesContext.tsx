@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react'
+import React, { createContext, useReducer, useState } from 'react'
 
 interface CreateCycleData {
   task: string
@@ -23,6 +23,9 @@ interface CyclesContextData {
   setAmountSecondsPassed: (seconds: number) => void
   createNewCycle: (data: CreateCycleData) => void
   interruptCurrentCycle: () => void
+  isPaused: boolean
+  setIsPaused: (isPaused: boolean) => void
+  handlePauseResume: () => void
 }
 
 export const CyclesContext = createContext({} as CyclesContextData)
@@ -39,6 +42,8 @@ interface CyclesState {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
+  const [isPaused, setIsPaused] = useState(false)
+
   const [cyclesState, dispatch] = useReducer(
     (state: CyclesState, action: any) => {
       if (action.type === 'ADD_NEW_CYCLE') {
@@ -67,7 +72,7 @@ export function CyclesContextProvider({
     {
       cycles: [],
       activeCycleId: null,
-    }
+    },
   )
   const { cycles, activeCycleId } = cyclesState
 
@@ -114,6 +119,9 @@ export function CyclesContextProvider({
       },
     })
   }
+  const handlePauseResume = () => {
+    setIsPaused((prevState) => !prevState)
+  }
 
   return (
     <CyclesContext.Provider
@@ -126,7 +134,11 @@ export function CyclesContextProvider({
         setAmountSecondsPassed,
         createNewCycle,
         interruptCurrentCycle,
-      }}>
+        isPaused,
+        setIsPaused,
+        handlePauseResume,
+      }}
+    >
       {children}
     </CyclesContext.Provider>
   )

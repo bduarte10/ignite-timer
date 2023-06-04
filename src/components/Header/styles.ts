@@ -4,6 +4,14 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme['gray-100']};
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
   nav {
     display: flex;
     gap: 0.5rem;

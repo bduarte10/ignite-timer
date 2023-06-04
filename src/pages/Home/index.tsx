@@ -1,8 +1,14 @@
-import { HandPalm, Play } from 'phosphor-react'
+import { HandPalm, Pause, Play } from 'phosphor-react'
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { CountdownStartBtn, HomeContainer, StopCountdownBtn } from './styles'
+import {
+  BtnsContainer,
+  CountdownStartBtn,
+  HomeContainer,
+  PauseCountdownBtn,
+  StopCountdownBtn,
+} from './styles'
 import { NewCycleForm } from './NewCycleForm'
 import { Countdown } from './Countdown'
 import { CyclesContext } from '../../contexts/CyclesContext'
@@ -13,8 +19,13 @@ interface FormData {
 }
 
 export function Home() {
-  const { activeCycle, createNewCycle, interruptCurrentCycle } =
-    useContext(CyclesContext)
+  const {
+    activeCycle,
+    createNewCycle,
+    interruptCurrentCycle,
+    handlePauseResume,
+    isPaused,
+  } = useContext(CyclesContext)
 
   const newCycleForm = useForm<FormData>({
     defaultValues: {
@@ -41,10 +52,16 @@ export function Home() {
         </FormProvider>
         <Countdown />
         {activeCycle ? (
-          <StopCountdownBtn onClick={interruptCurrentCycle} type="button">
-            <HandPalm size={24} />
-            interromper
-          </StopCountdownBtn>
+          <BtnsContainer>
+            <StopCountdownBtn onClick={interruptCurrentCycle} type="button">
+              <HandPalm size={24} />
+              interromper
+            </StopCountdownBtn>
+            <PauseCountdownBtn onClick={handlePauseResume} type="button">
+              {isPaused ? <Play size={24} /> : <Pause size={24} />}
+              {isPaused ? 'Retomar' : 'Pausar'}
+            </PauseCountdownBtn>
+          </BtnsContainer>
         ) : (
           <CountdownStartBtn type="submit" disabled={isSubmitDisabled}>
             <Play size={24} />

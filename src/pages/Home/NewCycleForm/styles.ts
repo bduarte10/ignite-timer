@@ -21,15 +21,16 @@ export const FormContainer = styled.div`
 const BaseInput = styled.input`
   background: transparent;
   height: 2.5rem;
-  border-radius: 10px;
-  border: 2px solid ${(props) => props.theme['gray-500']};
+  border: 0;
+  border-bottom: 2px solid ${(props) => props.theme['gray-500']};
+  border-radius: 8px;
   font-weight: bold;
   font-size: inherit;
   padding: 0 0.5rem;
   color: ${(props) => props.theme['gray-100']};
   &:focus {
     box-shadow: none;
-    border-color: ${(props) => props.theme['orange-500']};
+    border-bottom: ${(props) => props.theme['gray-500']};
   }
   &::placeholder {
     color: ${(props) => props.theme['gray-500']};

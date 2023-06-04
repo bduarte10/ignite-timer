@@ -2,15 +2,23 @@ import styled from 'styled-components'
 
 export const CountdownContainer = styled.div`
   font-family: 'Roboto Mono', monospace;
-  font-size: 10rem;
+  border: 1px solid ${(props) => props.theme['gray-100']};
+  border-radius: 50%;
+  padding: 2rem;
+  text-align: center;
+  width: 20rem;
+  height: 20rem;
+  font-size: 3.2rem;
   line-height: 8rem;
   color: ${(props) => props.theme['gray-100']};
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 
   span {
-    background: ${(props) => props.theme['gray-700']};
-    padding: 2rem 1rem;
+    padding: 1rem 0.5rem;
     border-radius: 8px;
   }
   @media (max-width: 768px) {
@@ -22,11 +30,10 @@ export const CountdownContainer = styled.div`
   }
 `
 export const Separator = styled.div`
-  padding: 2rem 0;
-  color: ${(props) => props.theme['orange-500']};
+  padding: 0;
+  color: ${(props) => props.theme['gray-100']};
+  width: 1rem;
 
-  width: 4rem;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   @media (max-width: 768px) {

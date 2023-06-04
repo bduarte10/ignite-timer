@@ -18,7 +18,10 @@ export const HomeContainer = styled.main`
     }
   }
 `
-
+export const BtnsContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`
 export const BaseCountdownBtn = styled.button`
   width: 100%;
   border: 0;
@@ -39,12 +42,16 @@ export const BaseCountdownBtn = styled.button`
 `
 
 export const CountdownStartBtn = styled(BaseCountdownBtn)`
-  background: ${(props) => props.theme['orange-500']};
+  background: ${(props) => props.theme['gray-600']};
 
   &:not(:disabled):hover {
-    background: ${(props) => props.theme['orange-700']};
+    background: ${(props) => props.theme['gray-700']};
   }
 `
+export const PauseCountdownBtn = styled(BaseCountdownBtn)`
+  background: ${(props) => props.theme['gray-600']};
+`
+
 export const StopCountdownBtn = styled(BaseCountdownBtn)`
   background: ${(props) => props.theme['red-500']};
 

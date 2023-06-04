@@ -41,7 +41,8 @@ export function Home() {
   }
 
   const task = watch('task')
-  const isSubmitDisabled = !task
+  const taskTimer = watch('minutesAmount')
+  const isSubmitDisabled = !task || !taskTimer || taskTimer <= 0
 
   return (
     <HomeContainer>

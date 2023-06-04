@@ -30,7 +30,7 @@ const BaseInput = styled.input`
   color: ${(props) => props.theme['gray-100']};
   &:focus {
     box-shadow: none;
-    border-bottom: ${(props) => props.theme['gray-500']};
+    border-bottom: 2px solid ${(props) => props.theme['gray-300']};
   }
   &::placeholder {
     color: ${(props) => props.theme['gray-500']};
@@ -58,7 +58,7 @@ export const MinutesAmount = styled(BaseInput)`
   width: 4rem;
   @media (max-width: 768px) {
     flex: 1;
-    width: 3rem;
+    min-width: 40%;
     text-align: center;
   }
 `

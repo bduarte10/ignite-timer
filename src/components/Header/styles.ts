@@ -7,9 +7,14 @@ export const HeaderContainer = styled.header`
 
   a {
     text-decoration: none;
-    color: ${(props) => props.theme['gray-100']};
+    background-image: linear-gradient(to right, #feb7b7, #db94ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 2rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
   }
 
   nav {
@@ -23,16 +28,16 @@ export const HeaderContainer = styled.header`
       justify-content: center;
       align-items: center;
 
-      color: ${(props) => props.theme['gray-100']};
+      color: ${(props) => props.theme['gray-300']};
 
       border-top: 3px solid transparent;
       border-bottom: 3px solid transparent;
 
       &:hover {
-        border-bottom: 3px solid ${(props) => props.theme['orange-500']};
+        border-bottom: 3px solid ${(props) => props.theme['gray-300']};
       }
       &.active {
-        color: ${(props) => props.theme['orange-500']};
+        color: ${(props) => props.theme.lightViolet};
       }
     }
   }

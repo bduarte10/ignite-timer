@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   margin: 0 auto;
   padding-bottom: 2rem;
   @media screen {

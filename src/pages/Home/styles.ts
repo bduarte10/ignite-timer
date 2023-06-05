@@ -10,11 +10,11 @@ export const HomeContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3.5rem;
+    gap: 3rem;
   }
   @media (max-width: 768px) {
     form {
-      gap: 2rem;
+      gap: 3rem;
     }
   }
 `

@@ -4,7 +4,13 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  @media screen {
+    padding-bottom: 0rem;
+  }
   a {
     text-decoration: none;
     background-image: linear-gradient(to right, #feb7b7, #db94ff);

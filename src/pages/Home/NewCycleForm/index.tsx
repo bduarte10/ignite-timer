@@ -11,17 +11,10 @@ export function NewCycleForm() {
     <FormContainer>
       <InputTask
         id="task"
-        list="task-suggestions"
         placeholder="Nome da tarefa"
         disabled={!!activeCycle}
         {...register('task')}
       />
-      <datalist id="task-suggestions">
-        <option value="Estudar Javascript" />
-        <option value="Estudar React" />
-        <option value="Estudar Node" />
-        <option value="Estudar React Native" />
-      </datalist>
 
       <MinutesAmount
         type="number"

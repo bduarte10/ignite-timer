@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState } from 'react'
+import React, { createContext, useCallback, useReducer, useState } from 'react'
 
 interface CreateCycleData {
   task: string
@@ -66,7 +66,19 @@ export function CyclesContextProvider({
           activeCycleId: null,
         }
       }
-
+      if (action.type === 'MARK_CURRENT_CYCLE_AS_FINISHED') {
+        return {
+          ...state,
+          cycles: state.cycles.map((cycle) => {
+            if (cycle.id === action.payload.activeCycleId) {
+              return { ...cycle, finishedDate: new Date() }
+            } else {
+              return cycle
+            }
+          }),
+          activeCycleId: null,
+        }
+      }
       return state
     },
     {
@@ -84,23 +96,26 @@ export function CyclesContextProvider({
     setSecondsPassed(seconds)
   }
 
-  function createNewCycle(data: CreateCycleData) {
-    const id = String(new Date().getTime())
-    const newCycle: Cycle = {
-      id,
-      task: data.task,
-      minutesAmount: data.minutesAmount,
-      startDate: new Date(),
-    }
+  const createNewCycle = useCallback(
+    (data: CreateCycleData) => {
+      const id = String(new Date().getTime())
+      const newCycle: Cycle = {
+        id,
+        task: data.task,
+        minutesAmount: data.minutesAmount,
+        startDate: new Date(),
+      }
 
-    dispatch({
-      type: 'ADD_NEW_CYCLE',
-      payload: {
-        newCycle,
-      },
-    })
-    setSecondsPassed(0)
-  }
+      dispatch({
+        type: 'ADD_NEW_CYCLE',
+        payload: {
+          newCycle,
+        },
+      })
+      setSecondsPassed(0)
+    },
+    [dispatch, setSecondsPassed],
+  )
 
   function interruptCurrentCycle() {
     dispatch({
@@ -109,6 +124,7 @@ export function CyclesContextProvider({
         activeCycleId,
       },
     })
+    setIsPaused(false)
   }
 
   function markCurrentCycleAsFinished() {
@@ -118,6 +134,8 @@ export function CyclesContextProvider({
         activeCycleId,
       },
     })
+
+    setIsPaused(false)
   }
   const handlePauseResume = () => {
     setIsPaused((prevState) => !prevState)

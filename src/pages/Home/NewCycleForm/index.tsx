@@ -26,11 +26,11 @@ export function NewCycleForm() {
       <MinutesAmount
         type="number"
         id="minutesAmount"
-        placeholder="05"
+        placeholder="0"
         disabled={!!activeCycle}
         autoComplete="off"
-        step={5}
-        min={5}
+        step={1}
+        min={1}
         max={60}
         {...register('minutesAmount', { valueAsNumber: true })}
       />

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
   overflow: hidden;
-  padding: 2rem 5.5rem;
+  padding: 2rem 3rem;
   min-height: 100vh;
 
   background: ${(props) => props.theme['gray-800']};

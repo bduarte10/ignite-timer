@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HistoryContainer = styled.main`
   flex: 1;
-  max-width: 700px;
+  max-width: 100%;
   margin: 3rem auto;
   padding: 2rem;
   display: flex;
@@ -12,7 +12,7 @@ export const HistoryContainer = styled.main`
     color: ${(props) => props.theme['gray-100']};
   }
   @media (max-width: 720px) {
-    padding: 1rem;
+    padding: 0;
   }
 `
 

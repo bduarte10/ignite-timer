@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { CyclesContext } from '../../../contexts/CyclesContext'
-import { CountdownContainer, Separator } from './styles'
+import { CountdownContainer, ProgressCircle, Separator } from './styles'
 
 export function Countdown() {
   const {
@@ -10,16 +10,15 @@ export function Countdown() {
     setAmountSecondsPassed,
     isPaused,
   } = useContext(CyclesContext)
-
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
+  const progressRef = useRef<SVGCircleElement>(null)
 
+  const secondsDifference = secondsPassed
+  const remainingSeconds = totalSeconds - secondsDifference
   useEffect(() => {
     let interval: number
 
     if (activeCycle && !isPaused) {
-      const secondsDifference = secondsPassed
-      const remainingSeconds = totalSeconds - secondsDifference
-
       if (remainingSeconds <= 0) {
         markCurrentCycleAsFinished()
         setAmountSecondsPassed(totalSeconds)
@@ -40,6 +39,8 @@ export function Countdown() {
     isPaused,
     markCurrentCycleAsFinished,
     setAmountSecondsPassed,
+    remainingSeconds,
+    secondsDifference,
   ])
 
   const currentSeconds = activeCycle ? totalSeconds - secondsPassed : 0
@@ -56,6 +57,22 @@ export function Countdown() {
     }
   }, [minutes, seconds, activeCycle])
 
+  useEffect(() => {
+    if (progressRef.current) {
+      const progress = (secondsPassed / totalSeconds) * 100
+      const circumference = 2 * Math.PI * progressRef.current.r.baseVal.value
+      const offset = circumference * (1 - progress / 100)
+      progressRef.current.style.strokeDasharray = `${circumference}`
+      progressRef.current.style.strokeDashoffset = `${offset}`
+
+      if (remainingSeconds <= 0) {
+        // Redefine para os valores padrão
+        progressRef.current.style.strokeDasharray = `${circumference}`
+        progressRef.current.style.strokeDashoffset = '0'
+      }
+    }
+  }, [remainingSeconds, secondsPassed, totalSeconds])
+
   return (
     <CountdownContainer>
       <span>{minutes[0]}</span>
@@ -63,6 +80,15 @@ export function Countdown() {
       <Separator>:</Separator>
       <span>{seconds[0]}</span>
       <span>{seconds[1]}</span>
+      <ProgressCircle>
+        <circle
+          ref={progressRef}
+          cx="50%"
+          cy="50%"
+          r="48%"
+          strokeDashoffset="0"
+        />
+      </ProgressCircle>
     </CountdownContainer>
   )
 }

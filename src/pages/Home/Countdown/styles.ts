@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const CountdownContainer = styled.div`
+  position: relative;
   font-family: 'Roboto Mono', monospace;
-  border: 1px solid ${(props) => props.theme['gray-100']};
+
   border-radius: 50%;
   padding: 2rem;
   text-align: center;
@@ -41,5 +42,22 @@ export const Separator = styled.div`
   @media (max-width: 768px) {
     width: 2rem;
     padding: 1.5rem 0;
+  }
+`
+export const ProgressCircle = styled.svg`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    fill: none;
+    stroke: ${(props) => props.theme.lightViolet};
+    stroke-width: 4;
+    stroke-dashoffset: 0;
   }
 `

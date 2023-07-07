@@ -134,7 +134,7 @@ export function CyclesContextProvider({
         activeCycleId,
       },
     })
-
+    alert('Sessão Finalizada!')
     setIsPaused(false)
   }
   const handlePauseResume = () => {

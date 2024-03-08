@@ -11,7 +11,7 @@ Este é um projeto de um aplicativo Pomodoro desenvolvido em React. O aplicativo
 
 ## Stack utilizada
 
-**Front-end:** React, Redux, TailwindCSS
+**Front-end:** React, Typescript, React-hook-form, Styled-components
 
 
 
@@ -37,11 +37,5 @@ Inicie o servidor
 ```
 
 
-## Rodando os testes
 
-Para rodar os testes, rode o seguinte comando
-
-```bash
-  npm run test
-```
 
